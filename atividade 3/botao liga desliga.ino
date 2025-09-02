@@ -10,7 +10,7 @@ void setup() {
 }
 
 void loop() {
-  estadoBotao = digitalRead(botao);
+  estadoBotao = digitalRead(Botao);
   
   if(estadoBotao == LOW && estadoAnterior == HIGH) {
     estadoLed = !estadoLed;
