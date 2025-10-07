@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de LED</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .led-control {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .led-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .led-verde .led-title {
+            color: #28a745;
+        }
+
+        .led-vermelho .led-title {
+            color: #dc3545;
+        }
+
+        .led-indicator {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .led-verde .led-indicator {
+            background-color: #d4edda;
+        }
+
+        .led-vermelho .led-indicator {
+            background-color: #f8d7da;
+        }
+
+        .led-verde .led-indicator.on {
+            background-color: #28a745;
+            box-shadow: 0 0 20px #28a745;
+        }
+
+        .led-vermelho .led-indicator.on {
+            background-color: #dc3545;
+            box-shadow: 0 0 20px #dc3545;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ligar {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-ligar:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-desligar {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-desligar:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .status.off {
+            color: #6c757d;
+        }
+
+        .status.on {
+            color: #28a745;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle de LEDs com Arduino via Web</h1>
+    
+    <div class="container">
+        <!-- Controle LED Verde -->
+        <div class="led-control led-verde">
+            <div class="led-title">LED 1 (Verde)</div>
+            <div class="led-indicator" id="led-verde"></div>
+            <div class="button-group">
+                <button class="btn-ligar" onclick="ligarLed('verde')">Ligar</button>
+                <button class="btn-desligar" onclick="desligarLed('verde')">Desligar</button>
+            </div>
+            <div class="status off" id="status-verde">Desligado</div>
+        </div>
+
+        <!-- Controle LED Vermelho -->
+        <div class="led-control led-vermelho">
+            <div class="led-title">LED 2 (Vermelho)</div>
+            <div class="led-indicator" id="led-vermelho"></div>
+            <div class="button-group">
+                <button class="btn-ligar" onclick="ligarLed('vermelho')">Ligar</button>
+                <button class="btn-desligar" onclick="desligarLed('vermelho')">Desligar</button>
+            </div>
+            <div class="status off" id="status-vermelho">Desligado</div>
+        </div>
+    </div>
+</body>
+</html>
