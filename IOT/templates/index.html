@@ -204,8 +204,18 @@
             <div class="status off" id="status-buzzer">Desligado</div>
         </div>
     </div>
-
+    <div class="semaforo">
+        <div class="luz"></div>
+        <button onclick="ligar()">Ligar/Desligar</button>
+    </div>
     <script>
+        statusLed = 'off';
+        function ligar(action){
+            action = statusLed == 'off' ? 'on' : 'off';
+
+            fetch(`/control/semaforo/${action}`);
+            statusLed = action;
+        }
         function controlarDispositivo(deviceNum, action) {
             fetch(`/control/${deviceNum}/${action}`)
                 .then(response => response.text())

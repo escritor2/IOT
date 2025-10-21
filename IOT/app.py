@@ -16,6 +16,17 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/control/semaforo/<action>')
+def controlLed(action):
+    if arduino:
+        if action == 'on':
+            command = 'r'
+            arduino.write(command.encode())   
+        else:
+            command = 'p'
+            arduino.write(command.encode())
+            
+
 # Rota que recebe os comandos do HTML e os envia para o Arduino
 @app.route('/control/<device>/<action>')
 def control(device, action):
